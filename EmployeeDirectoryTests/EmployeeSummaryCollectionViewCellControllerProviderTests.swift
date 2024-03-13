@@ -6,30 +6,30 @@
 //
 
 import XCTest
+@testable import EmployeeDirectory
 
-final class EmployeeSummaryCollectionViewCellControllerProviderTests: XCTestCase {
+class EmployeeSummaryCollectionViewCellControllerProviderTests: XCTestCase {
+    
+    func testProvideCellControllers() {
+        // Create a mock employee directory data
+        let employees: [EmployeeData] = [
+            EmployeeData(ID: "1", fullName: "John Doe", biography: "Biography 1", photoURLSMAll: URL(string: "https://example.com/photo1_small.jpg")!, photoURLLarge: URL(string: "https://example.com/photo1_large.jpg")!, team: "Engineering"),
+            EmployeeData(ID: "2", fullName: "Jane Doe", biography: "Biography 2", photoURLSMAll: URL(string: "https://example.com/photo2_small.jpg")!, photoURLLarge: URL(string: "https://example.com/photo2_large.jpg")!, team: "Design")
+        ]
+        let directoryData = EmployeeDirectoryData(employees: employees)
+        let provider = EmployeeSummaryCollectionViewCellControllerProvider()
+        let cellControllers = provider.provideCellControllers(for: directoryData)
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
+        // Verify the count of the returned cell controllers
+        XCTAssertEqual(cellControllers.count, employees.count, "The number of cell controllers should match the number of employees")
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+        for (index, controller) in cellControllers.enumerated() {
+            guard let employeeController = controller as? EmployeeSummaryCollectionViewCellController else {
+                XCTFail("Expected EmployeeSummaryCollectionViewCellController type")
+                return
+            }
+            XCTAssertEqual(employeeController.data, employees[index], "The data should match the employee data provided")
         }
     }
-
 }
+

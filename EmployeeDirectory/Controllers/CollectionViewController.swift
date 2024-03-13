@@ -7,8 +7,9 @@
 
 import Foundation
 import UIKit
+import SkeletonView
 
-final class CollectionViewController : NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
+final class CollectionViewController : NSObject, UICollectionViewDelegate {
     
     private var _sections: [CollectionViewSection] = []
     var sections: [CollectionViewSection] {
@@ -38,7 +39,11 @@ final class CollectionViewController : NSObject, UICollectionViewDataSource, UIC
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return sections.count
+        return sections[section].cellControllers.count
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        sections.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -46,5 +51,11 @@ final class CollectionViewController : NSObject, UICollectionViewDataSource, UIC
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellController.reuseableIdentifier, for: indexPath)
         cellController._configure(cell)
         return cell
+    }
+}
+
+extension CollectionViewController : SkeletonCollectionViewDataSource {
+    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> SkeletonView.ReusableCellIdentifier {
+        EmployeeSummaryCollectionViewCell.reuseableIdentifier
     }
 }

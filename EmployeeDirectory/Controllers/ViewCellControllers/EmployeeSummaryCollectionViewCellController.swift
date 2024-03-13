@@ -12,13 +12,24 @@ import SDWebImage
 
 protocol CollectionViewCellController<Cell> : AnyObject {
     associatedtype Cell: UICollectionViewCell
+    var reuseableIdentifier: String { get }
     
     func configure(_ cell: Cell)
 }
 
+extension CollectionViewCellController {
+    func _configure(_ cell: UICollectionViewCell) {
+        configure(cell as! Cell)
+    }
+}
+
 final class EmployeeSummaryCollectionViewCellController : CollectionViewCellController {
-    
     typealias Cell = EmployeeSummaryCollectionViewCell
+    
+    var reuseableIdentifier: String {
+        Cell.reuseableIdentifier
+    }
+    
     let data: EmployeeData
     
     init(data: EmployeeData) {

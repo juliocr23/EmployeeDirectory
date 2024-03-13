@@ -8,8 +8,7 @@
 import Foundation
 
 enum HttpError: Error {
-    case Unowned
-    case ClientError
-    case ServerError
-    case ParsingError
+    case clientError
+    case parsingError
+    case malformedURL
 }

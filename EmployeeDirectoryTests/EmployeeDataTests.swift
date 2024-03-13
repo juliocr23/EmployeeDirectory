@@ -6,30 +6,78 @@
 //
 
 import XCTest
+@testable import EmployeeDirectory
 
-final class EmployeeDataTests: XCTestCase {
+class EmployeeDataTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
+    func testEmployeeDataDecoding() {
+        // Define a JSON string that represents a valid employee
+        let jsonString = """
+        {
+            "uuid": "12345",
+            "full_name": "John Doe",
+            "biography": "A hardworking employee",
+            "photo_url_small": "https://example.com/photo_small.jpg",
+            "photo_url_large": "https://example.com/photo_large.jpg",
+            "team": "Engineering"
+        }
+        """
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
+        guard let jsonData = jsonString.data(using: .utf8) else {
+            XCTFail("Failed to convert string to Data")
+            return
+        }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
+        do {
+            let employee = try JSONDecoder().decode(EmployeeData.self, from: jsonData)
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+            XCTAssertEqual(employee.ID, "12345")
+            XCTAssertEqual(employee.fullName, "John Doe")
+            XCTAssertEqual(employee.biography, "A hardworking employee")
+            XCTAssertEqual(employee.photoURLSMAll.absoluteString, "https://example.com/photo_small.jpg")
+            XCTAssertEqual(employee.photoURLLarge.absoluteString, "https://example.com/photo_large.jpg")
+            XCTAssertEqual(employee.team, "Engineering")
+        } catch {
+            XCTFail("Decoding failed with error: \(error)")
         }
     }
 
+    func testEmployeeDirectoryDataDecoding() {
+        // Define a JSON string that represents a directory with one employee
+        let jsonString = """
+        {
+            "employees": [
+                {
+                    "uuid": "12345",
+                    "full_name": "John Doe",
+                    "biography": "A hardworking employee",
+                    "photo_url_small": "https://example.com/photo_small.jpg",
+                    "photo_url_large": "https://example.com/photo_large.jpg",
+                    "team": "Engineering"
+                }
+            ]
+        }
+        """
+
+        guard let jsonData = jsonString.data(using: .utf8) else {
+            XCTFail("Failed to convert string to Data")
+            return
+        }
+
+        do {
+            let directory = try JSONDecoder().decode(EmployeeDirectoryData.self, from: jsonData)
+
+            XCTAssertEqual(directory.employees.count, 1)
+
+            let employee = directory.employees.first!
+            XCTAssertEqual(employee.ID, "12345")
+            XCTAssertEqual(employee.fullName, "John Doe")
+            XCTAssertEqual(employee.biography, "A hardworking employee")
+            XCTAssertEqual(employee.photoURLSMAll.absoluteString, "https://example.com/photo_small.jpg")
+            XCTAssertEqual(employee.photoURLLarge.absoluteString, "https://example.com/photo_large.jpg")
+            XCTAssertEqual(employee.team, "Engineering")
+        } catch {
+            XCTFail("Decoding failed with error: \(error)")
+        }
+    }
 }

@@ -30,6 +30,17 @@ struct EmployeeData: Equatable, Decodable {
         team = try container.decode(String.self, forKey: .team)
     }
     
+    init(ID: String, fullName: String,
+         biography: String, photoURLSMAll: URL,
+         photoURLLarge: URL, team:String) {
+        self.ID = ID
+        self.fullName = fullName
+        self.biography = biography
+        self.photoURLSMAll = photoURLSMAll
+        self.photoURLLarge = photoURLLarge
+        self.team = team
+    }
+    
     private enum CodingKeys: String, CodingKey {
         case ID = "uuid"
         case fullName = "full_name"

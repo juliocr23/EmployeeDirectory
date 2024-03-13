@@ -7,9 +7,9 @@
 
 import UIKit
 
-/// `NibBacking` provides a nib, this is useful when registering a nib for a UICollectionViewCell
 protocol NibBacking {
     static var nib: UINib { get }
+    static var reuseableIdentifier: String { get }
 }
 
 extension NibBacking where Self : UICollectionViewCell {
@@ -18,8 +18,9 @@ extension NibBacking where Self : UICollectionViewCell {
     }
 }
 
-class EmployeeSummaryCollectionViewCell: UICollectionViewCell, NibBacking {
-    static let nib: UINib = UINib(nibName: String(describing: EmployeeSummaryCollectionViewCell.self), bundle: nil)
+final class EmployeeSummaryCollectionViewCell: UICollectionViewCell, NibBacking {
+    static let reuseableIdentifier = String(describing: EmployeeSummaryCollectionViewCell.self)
+    static let nib: UINib = UINib(nibName: reuseableIdentifier, bundle: nil)
     static let sizingCell = instantiateFromNib()
     
     @IBOutlet weak var profileImageView: UIImageView!
