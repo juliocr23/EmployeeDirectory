@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="EmployeeSummaryCollectionViewCell" customModule="EmployeeDirectory" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="300" height="320"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="300" height="320"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileImagePlaceHolder" translatesAutoresizingMaskIntoConstraints="NO" id="RoC-Bq-4lF">
+                        <rect key="frame" x="100" y="32" width="100" height="100"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="100" id="7Ia-I9-niJ"/>
+                            <constraint firstAttribute="height" constant="100" id="zih-MH-TLU"/>
+                        </constraints>
+                    </imageView>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="2RL-bs-otw">
+                        <rect key="frame" x="100.33333333333331" y="148" width="99.666666666666686" height="36.333333333333343"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Julio Rosario" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FCJ-BR-Tmt">
+                                <rect key="frame" x="0.0" y="0.0" width="99.666666666666671" height="19.333333333333332"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seller" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fie-jQ-UqP">
+                                <rect key="frame" x="0.0" y="19.333333333333343" width="99.666666666666671" height="17"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="19v-94-aYU">
+                        <rect key="frame" x="132.66666666666666" y="206.33333333333334" width="34.666666666666657" height="17"/>
+                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="19v-94-aYU" firstAttribute="top" secondItem="2RL-bs-otw" secondAttribute="bottom" constant="22" id="D18-ol-P97"/>
+                <constraint firstItem="RoC-Bq-4lF" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="Eh4-6D-Ufz"/>
+                <constraint firstItem="2RL-bs-otw" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="PXL-R1-QYh"/>
+                <constraint firstItem="2RL-bs-otw" firstAttribute="top" secondItem="RoC-Bq-4lF" secondAttribute="bottom" constant="16" id="R4Y-OK-IYE"/>
+                <constraint firstItem="RoC-Bq-4lF" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="32" id="TqL-LW-5K5"/>
+                <constraint firstItem="19v-94-aYU" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="iXY-jH-Tpm"/>
+            </constraints>
+            <size key="customSize" width="436" height="271"/>
+            <connections>
+                <outlet property="descriptionLabel" destination="19v-94-aYU" id="SB3-pw-3oF"/>
+                <outlet property="nameLabel" destination="FCJ-BR-Tmt" id="EJS-3x-Sux"/>
+                <outlet property="profileImageView" destination="RoC-Bq-4lF" id="rAM-K6-xqy"/>
+                <outlet property="teamLabel" destination="fie-jQ-UqP" id="QJZ-Ry-V9f"/>
+            </connections>
+            <point key="canvasLocation" x="225.95419847328245" y="47.887323943661976"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="profileImagePlaceHolder" width="812" height="814"/>
+    </resources>
+</document>

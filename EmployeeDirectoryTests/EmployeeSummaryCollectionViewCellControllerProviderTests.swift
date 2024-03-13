@@ -1,14 +1,13 @@
 //
-//  EmployeeDirectoryTests.swift
+//  EmployeeSummaryCollectionViewCellControllerProviderTests.swift
 //  EmployeeDirectoryTests
 //
-//  Created by Julio Rosario on 3/10/24.
+//  Created by Julio Rosario on 3/13/24.
 //
 
 import XCTest
-@testable import EmployeeDirectory
 
-final class EmployeeDirectoryTests: XCTestCase {
+final class EmployeeSummaryCollectionViewCellControllerProviderTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
